@@ -1,38 +1,27 @@
-@extends("layouts.app")
+@extends('layouts.app')
 
-@section("content")
+@section('content')
+<main class="flex-1 max-w-5xl w-full mx-auto px-6 py-16">
+    <div class="mb-12">
+        <p class="text-zinc-500 uppercase tracking-[0.25em] text-xs font-bold mb-2">Tentang Saya</p>
+        <h1 class="text-3xl md:text-4xl font-bold text-zinc-100 mb-4">Keahlian & Teknologi</h1>
+        <p class="text-zinc-400 max-w-2xl leading-relaxed">
+            Mahasiswa Informatika yang berfokus pada pengembangan perangkat lunak lintas platform, mulai dari aplikasi mobile hingga arsitektur backend.
+        </p>
+    </div>
 
-
-
-<main class="max-w-6xl mx-auto px-6 pt-32 pb-16">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        
-
-        <div class="relative group">
-            <div class="absolute -inset-1 bg-gradient-to-r from-zinc-700 to-zinc-900 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-            <img src="{{ asset('IMG/Tin.png') }}" alt="Profile" class="relative rounded-lg shadow-2xl w-full object-cover border border-zinc-100 grayscale hover:grayscale-0 transition-all duration-300">
-        </div>
-
-    
-        <div>
-            <h2 class="text-3xl font-bold text-zinc-400 mb-6">Tentang Saya</h2>
-            <p class="text-zinc-400 leading-relaxed mb-4">
-                Saya adalah seorang mahasiswa program studi Informatika di Universitas Ciputra Makassar (NIM: 2086022510005). Memiliki minat yang mendalam dalam rekayasa perangkat lunak, pengembangan aplikasi *mobile*, dan perancangan *backend*.
-            </p>
-            <p class="text-zinc-400 leading-relaxed mb-8">
-                Selain pemrograman, saya juga aktif berorganisasi dan mengelola komunitas, serta memiliki ketertarikan pada analisis bisnis dan arsitektur *Internet of Things* (IoT).
-            </p>
-            
-            <h3 class="text-xl font-bold text-zinc-200 mb-4 border-b border-zinc-800 pb-2">Tech Stack & Keahlian</h3>
-            <div class="flex flex-wrap gap-3">
-                <span class="px-4 py-1.5 bg-zinc-900 border border-zinc-700 rounded text-sm text-zinc-300">Java & OOP</span>
-                <span class="px-4 py-1.5 bg-zinc-900 border border-zinc-700 rounded text-sm text-zinc-300">Flutter (Dart)</span>
-                <span class="px-4 py-1.5 bg-zinc-900 border border-zinc-700 rounded text-sm text-zinc-300">Laravel</span>
-                <span class="px-4 py-1.5 bg-zinc-900 border border-zinc-700 rounded text-sm text-zinc-300">Tailwind CSS</span>
-                <span class="px-4 py-1.5 bg-zinc-900 border border-zinc-700 rounded text-sm text-zinc-300">MySQL / Laragon</span>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        @forelse ($skills as $skill)
+            <div class="bg-zinc-900/60 border border-zinc-800 p-6 rounded-xl hover:border-zinc-600 transition-all">
+                <span class="text-xs font-semibold text-zinc-500 uppercase tracking-wider">{{ $skill->category }}</span>
+                <h3 class="text-xl font-bold text-zinc-100 mt-1 mb-4">{{ $skill->name }}</h3>
+                <span class="inline-block px-3 py-1 bg-zinc-800 text-zinc-300 text-xs font-medium rounded-full border border-zinc-700">
+                    {{ $skill->level }}
+                </span>
             </div>
-        </div>
+        @empty
+            <p class="text-zinc-500 col-span-3">Belum ada data keahlian di database.</p>
+        @endforelse
     </div>
 </main>
-
 @endsection
